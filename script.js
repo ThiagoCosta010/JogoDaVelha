@@ -22,7 +22,7 @@ const startGame = () => {
         cell.classList.remove('circle')
         cell.classList.remove('x')
         cell.removeEventListener('click',handleClick)
-        cell.addEventListener('click',handleClick, {once: this})
+        cell.addEventListener('click',handleClick, {once:true})
     }
     setBoardHoverClass()
     winningMessage.classList.remove('show-winning-message')
@@ -46,7 +46,7 @@ const checkForDraw = () => {
     return [...cellElements].every((cell) => {
         return cell.classList.contains('x') || cell.classList.contains('circle')
     })
-}   
+}
 const placeMark = (cell, classToAdd) => {
     cell.classList.add(classToAdd)
 }
@@ -59,11 +59,11 @@ const setBoardHoverClass = () => {
         board.classList.add('x')
     }
 }
-
 const swapTurns = () => {
     isCircleTurn = !isCircleTurn
     setBoardHoverClass()
 }
+
 const handleClick = (e) => {
     const cell = e.target
     const classToAdd = isCircleTurn ? 'circle' : 'x'
@@ -72,12 +72,11 @@ const handleClick = (e) => {
     const isDraw = checkForDraw()
     if(isWin){
         endGame(false)
-    }else if (isDraw){
+    }else if(isDraw){
         endGame(true)
     }else{
         swapTurns()
     }
-
 }
 startGame()
 restartButton.addEventListener('click', startGame)
