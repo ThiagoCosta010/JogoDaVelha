@@ -16,12 +16,12 @@ const winningCombination = [
     [0, 4, 8],
     [2, 4, 6],
 ]
-const startGame = () => {
+const starGame = () => {
     isCircleTurn = false
     for(const cell of cellElements){
         cell.classList.remove('circle')
         cell.classList.remove('x')
-        cell.removeEventListener('click', handleClick)
+        cell.removeEventListener('click',handleClick)
         cell.addEventListener('click',handleClick, {once:true})
     }
     setBoardHoverClass()
@@ -35,7 +35,7 @@ const endGame = (isDraw) => {
     }
     winningMessage.classList.add('show-winning-message')
 }
-const checkFoWin = (currentPlayer) => {
+const checkForWin = (currentPlayer) => {
     return winningCombination.some((combination) => {
         return combination.every((index) => {
             return cellElements[index].classList.contains(currentPlayer)
@@ -67,15 +67,15 @@ const handleClick = (e) => {
     const cell = e.target
     const classToAdd = isCircleTurn ? 'circle' : 'x'
     placeMark(cell, classToAdd)
-    const isWin = checkFoWin(classToAdd)
+    const isWin = checkForWin(classToAdd)
     const isDraw = checkForDraw()
     if(isWin){
         endGame(false)
-    }else if(isDraw){
+    }else if (isDraw){
         endGame(true)
     }else{
         swapTurns()
     }
 }
-startGame()
-restartButton.addEventListener('click', startGame)
+starGame()
+restartButton.addEventListener('click',starGame)
