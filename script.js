@@ -6,7 +6,7 @@ const restartButton = document.querySelector('[data-restart-button]')
 
 let isCircleTurn
 
-const winningCombinations = [
+const winningCombination = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -21,7 +21,7 @@ const startGame = () => {
     for(const cell of cellElements){
         cell.classList.remove('circle')
         cell.classList.remove('x')
-        cell.removeEventListener('click',handleClick)
+        cell.removeEventListener('click', handleClick)
         cell.addEventListener('click',handleClick, {once:true})
     }
     setBoardHoverClass()
@@ -35,8 +35,8 @@ const endGame = (isDraw) => {
     }
     winningMessage.classList.add('show-winning-message')
 }
-const checkForWin = (currentPlayer) => {
-    return winningCombinations.some((combination) => {
+const checkFoWin = (currentPlayer) => {
+    return winningCombination.some((combination) => {
         return combination.every((index) => {
             return cellElements[index].classList.contains(currentPlayer)
         })
@@ -63,12 +63,11 @@ const swapTurns = () => {
     isCircleTurn = !isCircleTurn
     setBoardHoverClass()
 }
-
 const handleClick = (e) => {
     const cell = e.target
     const classToAdd = isCircleTurn ? 'circle' : 'x'
     placeMark(cell, classToAdd)
-    const isWin = checkForWin(classToAdd)
+    const isWin = checkFoWin(classToAdd)
     const isDraw = checkForDraw()
     if(isWin){
         endGame(false)
