@@ -16,13 +16,13 @@ const winningCombination = [
     [0, 4, 8],
     [2, 4, 6],
 ]
-const starGame = () => {
+const startGame = () => {
     isCircleTurn = false
     for(const cell of cellElements){
-        cell.classList.remove('circle')
         cell.classList.remove('x')
-        cell.removeEventListener('click',handleClick)
-        cell.addEventListener('click',handleClick, {once:true})
+        cell.classList.remove('circle')
+        cell.removeEventListener('click', handleClick)
+        cell.addEventListener('click',handleClick, {once: true})
     }
     setBoardHoverClass()
     winningMessage.classList.remove('show-winning-message')
@@ -77,5 +77,5 @@ const handleClick = (e) => {
         swapTurns()
     }
 }
-starGame()
-restartButton.addEventListener('click',starGame)
+startGame()
+restartButton.addEventListener('click', startGame)
