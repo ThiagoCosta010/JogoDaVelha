@@ -19,10 +19,10 @@ const winningCombination = [
 const startGame = () => {
     isCircleTurn = false
     for(const cell of cellElements){
-        cell.classList.remove('x')
         cell.classList.remove('circle')
+        cell.classList.remove('x')
         cell.removeEventListener('click', handleClick)
-        cell.addEventListener('click',handleClick, {once: true})
+        cell.addEventListener('click', handleClick, {once: true})
     }
     setBoardHoverClass()
     winningMessage.classList.remove('show-winning-message')
