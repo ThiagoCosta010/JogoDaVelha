@@ -21,17 +21,17 @@ const startGame = () => {
     for(const cell of cellElements){
         cell.classList.remove('circle')
         cell.classList.remove('x')
-        cell.removeEventListener('click', handleClick)
-        cell.addEventListener('click',handleClick, {once: true})
+        cell.removeEventListener('click',handleClick)
+        cell.addEventListener('click', handleClick, {once: true})
     }
     setBoardHoverClass()
     winningMessage.classList.remove('show-winning-message')
 }
 const endGame = (isDraw) => {
     if(isDraw){
-        winningMessageTextElement.innerHTML = 'Empate!'
+        winningMessageTextElement.innerHTML = `Empate!`
     }else{
-        winningMessageTextElement.innerHTML = isCircleTurn ? 'O venceu!' : 'X venceu!'
+        winningMessageTextElement.innerHTML = isCircleTurn ? 'O venceu' : 'X venceu'
     }
     winningMessage.classList.add('show-winning-message')
 }
@@ -71,7 +71,7 @@ const handleClick = (e) => {
     const isDraw = checkForDraw()
     if(isWin){
         endGame(false)
-    }else if (isDraw){
+    }else if(isDraw){
         endGame(true)
     }else{
         swapTurns()
